@@ -19,6 +19,10 @@ body {
     justify-content: center;
 }
 
+.red-flash {
+    background-color: red;
+}
+
 @keyframes gradient {
     0% {
         background-position: 0% 50%;

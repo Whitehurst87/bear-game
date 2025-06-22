@@ -1,3 +1,19 @@
+function flashRed() {
+    document.body.classList.add('red-flash');
+    setTimeout(() => {
+        document.body.classList.remove('red-flash');
+    }, 1000);
+}
+
+function rainbowBackground() {
+    const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+    let i = 0;
+    setInterval(() => {
+        document.body.style.backgroundColor = colors[i];
+        i = (i + 1) % colors.length;
+    }, 200);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Game elements
     const door1 = document.getElementById('door1');
@@ -13,11 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Pre-load audio files to improve playback chances
     const audioFiles = {
-        'win': 'https://assets.mixkit.co/active_storage/sfx/2005/2005-preview.mp3',
+        'win': 'https://assets.mixkit.co/active_storage/sfx/4417/4417-preview.mp3',
         'door_creak': 'https://assets.mixkit.co/active_storage/sfx/2/2-preview.mp3',
-        'bear_growl': 'https://assets.mixkit.co/active_storage/sfx/209/209-preview.mp3',
-        'bear_attack': 'https://assets.mixkit.co/active_storage/sfx/555/555-preview.mp3',
-        'bear_laugh': 'https://assets.mixkit.co/active_storage/sfx/174/174-preview.mp3',
+        'bear_growl': 'https://assets.mixkit.co/active_storage/sfx/1318/1318-preview.mp3',
+        'bear_attack': 'https://assets.mixkit.co/active_storage/sfx/675/675-preview.mp3',
+        'bear_laugh': 'https://assets.mixkit.co/active_storage/sfx/414/414-preview.mp3',
         'reset': 'https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3'
     };
     
@@ -80,6 +96,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 winResult.classList.remove('hidden');
                 resetButton.classList.remove('hidden');
                 playSound('win');
+                
+                // Trigger confetti
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+                
+                // Change background to party theme
+                //document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1548611635-c6b0a3c33984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBhcnR5fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60')";
+                //document.body.style.backgroundSize = "cover";
+                rainbowBackground();
             }, 800);
         } else {
             // Show bears
@@ -93,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Play bear attack sound after a short delay
             setTimeout(() => {
+                flashRed();
                 playSound('bear_attack');
             }, 1000);
             
