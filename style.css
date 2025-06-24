@@ -7,6 +7,20 @@
     font-family: 'Poppins', sans-serif;
 }
 
+h1.clickable-headline {
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2rem;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: transparent;
+    border: none;
+}
+
 body {
     background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #252941);
     background-size: 400% 400%;
@@ -17,10 +31,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.red-flash {
-    background-color: red;
 }
 
 @keyframes gradient {
